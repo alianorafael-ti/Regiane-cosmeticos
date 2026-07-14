@@ -14,14 +14,14 @@ import imgTodaNoite from "./assets/sab-todo-dia-toda-noite.png";
 import imgSiage from "./assets/siage.png";
 
 export default function App() {
-  // 3. Sua lista de produtos apontando para as variáveis das imagens importadas
+  // 3. Sua lista de produtos oficial
   const meusProdutos = [
     {
       id: 1,
       nome: "Natura Kaiak Masculino Desodorante Colônia",
       valor: "R$ 172,90",
       qtestoque: 1,
-      imagem: imgKayak, // Aqui passamos a variável da foto importada lá em cima!
+      imagem: imgKayak,
       linkShopee: "https://shopee.com.br"
     },
     {
@@ -91,32 +91,41 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-pink-50/50 flex flex-col justify-between">
+    // Fundo rosa pastel definido
+    <div className="min-h-screen flex flex-col justify-between" style={{ backgroundColor: '#fce7f3' }}>
       
       {/* CABEÇALHO */}
-      {/* CABEÇALHO PREMIUM */}
-      {/* CABEÇALHO COM BANNER PERSONALIZADO */}
-     {/* CABEÇALHO COM BANNER TOTALMENTE EXPANDIDO */}
-      <header className="bg-white border-b border-pink-100 shadow-sm w-full">
-        {/* Faixa superior com mais altura e destaque */}
-        <div className="bg-gradient-to-r from-pink-500 to-pink-600 text-white text-sm py-3.5 px-6">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 font-semibold tracking-wide">
-            <span className="uppercase text-center sm:text-left">
+      <header className="w-full bg-white relative">
+        {/* Tarja Rosa */}
+        <div 
+          className="bg-gradient-to-r from-pink-500 to-pink-600 text-white px-6 relative z-10 shadow-md flex items-center"
+          style={{ padding: '32px 24px' }} 
+        >
+          <div className="max-w-7xl mx-auto w-full flex flex-col sm:flex-row justify-between items-center gap-4 font-semibold tracking-wide">
+            <span 
+              className="uppercase text-center sm:text-left font-bold" 
+              style={{ fontSize: '16px' }}
+            >
               ✨ Novidades Natura & Eudora com pronta entrega!
             </span>
+            
             <a 
-              href="https://wa.me/5511999999999" // Substitua pelo link do WhatsApp real da Regiane
+              href="https://wa.me/5511999999999" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:bg-white hover:text-pink-600 flex items-center gap-2 bg-white/15 px-4 py-1.5 rounded-full transition-all duration-300 text-xs shadow-sm"
+              className="hover:bg-white hover:text-pink-600 flex items-center gap-2 bg-white/15 px-6 py-2.5 rounded-full transition-all duration-300 shadow-sm font-bold"
+              style={{ fontSize: '18px' }}
             >
               💬 Fale Conosco no WhatsApp
             </a>
           </div>
         </div>
 
-        {/* Área do Banner - Ocupando 100% da largura da tela, sem bordas ou limites */}
-        <div className="w-full overflow-hidden">
+        {/* Banner com margem negativa */}
+        <div 
+          className="w-full overflow-hidden relative z-0"
+          style={{ marginTop: '-48px' }}
+        >
           <img 
             src={imgBanner} 
             alt="Banner Regiane Cosméticos" 
@@ -124,20 +133,43 @@ export default function App() {
           />
         </div>
       </header>
-      {/* CORPO PRINCIPAL */}
-      <main className="max-w-6xl mx-auto px-4 py-10 flex-grow">
+
+      {/* CORPO PRINCIPAL - Largura total sem travas externas para poder centralizar perfeitamente */}
+      <main className="w-full py-10 flex-grow">
         
-        <div className="text-center mb-10">
-          <h2 className="text-2xl font-bold text-gray-800">
+        {/* Título */}
+        <div 
+          className="text-center" 
+          style={{ marginTop: '56px', marginBottom: '40px', padding: '0 16px' }}
+        >
+          <h2 
+            className="font-bold tracking-tight" 
+            style={{ color: '#db2777', fontSize: '32px' }}
+          >
             Catálogo Pronta Entrega
           </h2>
-          <p className="text-sm text-gray-500 mt-1">
+          <p 
+            className="text-gray-700 font-medium" 
+            style={{ fontSize: '16px', maxWidth: '600px', margin: '8px auto 0' }}
+          >
             Selecione a quantidade desejada e compre diretamente na nossa loja parceira da Shopee.
           </p>
         </div>
 
-        {/* GRADE DE PRODUTOS */}
-        <div className="flex flex-wrap gap-8 justify-center">
+        {/* GRADE DE PRODUTOS CORRIGIDA E 100% SIMÉTRICA */}
+        <div 
+          style={{ 
+            display: 'grid', 
+            // Força o grid a ter no máximo 3 colunas idênticas lado a lado
+            gridTemplateColumns: 'repeat(3, minmax(280px, 340px))', 
+            gap: '32px', 
+            // Garante que o grupo inteiro de cards fique centralizado na tela
+            justifyContent: 'center',
+            margin: '0 auto',
+            width: '100%',
+            padding: '0 32px' // Espaçamento igual e seguro nas duas pontas da tela
+          }}
+        >
           {meusProdutos.map((produto) => (
             <CardProduto
               key={produto.id}
@@ -151,10 +183,12 @@ export default function App() {
         </div>
 
       </main>
-
-      {/* RODAPÉ */}
-      <footer className="bg-white border-t border-pink-100 py-6 text-center">
-        <p className="text-xs text-gray-400">
+      {/* RODAPÉ PREMIUM */}
+      <footer 
+        className="bg-gradient-to-r from-pink-500 to-pink-600 text-white text-center relative z-10 shadow-lg mt-12"
+        style={{ padding: '24px 16px' }}
+      >
+        <p className="text-sm font-bold tracking-wide">
           &copy; 2026 Regiane Cosméticos. Todos os direitos reservados.
         </p>
       </footer>
